@@ -96,12 +96,15 @@ class VideoPlayer {
         });
 
         // CTA button
+        // CTA button
         const ctaButton = document.querySelector('.cta-button');
         if (ctaButton) {
             ctaButton.addEventListener('click', () => {
-                alert('Contact NoBroker for Balance Transfer today!\n\nThis would typically redirect to a contact form or phone number.');
+                window.location.href = 'tel:+919632321997';
             });
         }
+}
+
     }
 
     togglePlayPause() {
