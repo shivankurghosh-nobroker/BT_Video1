@@ -38,7 +38,6 @@ class VideoPlayer {
     this.rewindBtn = document.getElementById('rewindBtn');
     this.forwardBtn = document.getElementById('forwardBtn');
 
-    // Setup
     this.setupSlides();
     this.setupIndicators();
     this.attachEventListeners();
@@ -49,7 +48,6 @@ class VideoPlayer {
 
   setupSlides() {
     this.allSlides.forEach((slide, i) => {
-      // Insert slide text as HTML (for .highlight)
       slide.querySelector('.slide-content').innerHTML = this.slides[i].text;
     });
   }
@@ -77,16 +75,20 @@ class VideoPlayer {
         window.location.href = 'tel:+919632321997';
       });
     }
-    // Keyboard navigation
+    // Keyboard:
     document.addEventListener('keydown', (e) => {
-      if (e.code === 'ArrowRight') this.nextSlide();
-      else if (e.code === 'ArrowLeft') this.previousSlide();
+      if ((e.code === 'ArrowRight' || e.code === 'PageDown')) this.nextSlide();
+      else if ((e.code === 'ArrowLeft' || e.code === 'PageUp')) this.previousSlide();
       else if (e.code === 'Space') {
         e.preventDefault();
         this.togglePlayPause();
       }
       else if (e.code === 'KeyR') this.restart();
     });
+    // Attempt auto-play on user gesture (required in some browsers):
+    document.body.addEventListener('click', () => {
+      if (this.isPlaying && this.audio && this.audio.paused) this.audio.play();
+    }, {once:true});
   }
 
   togglePlayPause() {
@@ -178,7 +180,6 @@ class VideoPlayer {
       slide.classList.toggle('active', i === index);
       slide.classList.toggle('previous', i < index);
     });
-    // Hide CTA on all but last
     if (this.ctaButton) {
       this.ctaButton.style.display = (index === this.slides.length - 1) ? "inline-block" : "none";
     }
@@ -196,7 +197,7 @@ class VideoPlayer {
             this.updateIndicators();
             this.scheduleNextSlide();
           } else {
-            // End: pause and optionally loop
+            // Loop back to first slide after end
             this.currentSlide = 0;
             this.showSlide(this.currentSlide);
             this.updateIndicators();
@@ -204,7 +205,6 @@ class VideoPlayer {
             this.pausedAtTime = 0;
             this.updateProgress(0);
             this.updateTimeDisplay();
-            // Loop video and audio
             this.play();
             if (this.audio) {
               this.audio.currentTime = 0;
@@ -264,5 +264,5 @@ class VideoPlayer {
 
 window.addEventListener('DOMContentLoaded', () => {
   const player = new VideoPlayer();
-  window.videoPlayer = player; // for debugging/console access
+  window.videoPlayer = player;
 });
