@@ -20,16 +20,41 @@ body, html {
   width: 100vw;
 }
 
+/* --- LOGO CONTAINER --- */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5vh;
+  margin-bottom: 1.2vh;
+  width: 100%;
+}
+.logo-img {
+  display: block;
+  width: 88px;
+  height: auto;
+  max-width: 170px;
+  max-height: 90px;
+  object-fit: contain;
+}
+@media (max-width: 600px) {
+  .logo-img {
+    width: 58px;
+    max-width: 78px;
+    max-height: 60px;
+  }
+}
+
 /* Responsive Video Container with Aspect Ratio */
 .slides-container {
   position: relative;
-  margin: 2.5vh auto;
+  margin: 0 auto 2vh auto;
   background: var(--color-bg);
   border-radius: 18px;
   box-shadow: 0 8px 32px 0 rgba(84,84,84,0.12);
   overflow: hidden;
   width: 95vw; max-width: 900px;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16/9;
   min-height: 340px;
   display: flex;
   align-items: center;
@@ -39,21 +64,9 @@ body, html {
 /* Mobile aspect ratio override */
 @media (max-width: 600px) {
   .slides-container {
-    aspect-ratio: 36 / 43;
+    aspect-ratio: 36/43;
     min-height: 240px;
     max-width: 98vw;
-  }
-}
-
-/* NoBroker Logo Overlay */
-.slide-logo {
-  position: absolute;
-  top: 24px;
-  left: 30px;
-  width: 74px;
-  height: 74px;
-  z-index: 20;
-  pointer-events: none;
   }
 }
 
@@ -68,7 +81,7 @@ body, html {
   justify-content: center;
   text-align: center;
   background: transparent;
-  padding: 3.5em 1.5em 1em 1.5em;
+  padding: 2.8em 1.5em 1em 1.5em;
   color: var(--color-text);
   z-index: 10;
 }
@@ -241,5 +254,5 @@ body, html {
 }
 @media (max-width: 420px) {
   .slides-container { min-height: 120px; height: 210px; }
-  .slide-logo { width: 35px; height: 40px; top: 4px; left: 4px; }
+  .logo-img { width: 35px; max-width: 54px; }
 }
