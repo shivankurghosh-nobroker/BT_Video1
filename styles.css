@@ -54,13 +54,6 @@ body, html {
   height: 74px;
   z-index: 20;
   pointer-events: none;
-}
-@media (max-width: 600px) {
-  .slide-logo {
-    top: 12px;
-    left: 10px;
-    width: 52px;
-    height: 52px;
   }
 }
 
