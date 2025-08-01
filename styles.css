@@ -1,8 +1,3 @@
-/* === FONT IMPORTS === */
-/* Add these inside your <head> in HTML:
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900;800;600&display=swap" rel="stylesheet">
-*/
-
 :root {
   --font-heading: 'Montserrat', Arial, sans-serif;
   --color-bg: #000000;
@@ -14,43 +9,63 @@
   --font-semibold: 600;
 }
 
-/* === GLOBAL RESET === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body, html {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-heading);
   font-weight: var(--font-semibold);
   min-height: 100vh;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
 }
 
-/* === SLIDES CONTAINER === */
+/* Responsive Video Container with Aspect Ratio */
 .slides-container {
   position: relative;
-  width: 100vw;
-  max-width: 650px;
-  height: 340px;
+  margin: 2.5vh auto;
   background: var(--color-bg);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(84,84,84,0.12);
+  overflow: hidden;
+  /* Default desktop aspect: 16:9 */
+  width: 95vw; max-width: 900px;
+  aspect-ratio: 16 / 9;
+  min-height: 340px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  border-radius: 18px;
-  box-shadow: 0 8px 32px 0 rgba(84,84,84,0.12);
 }
 
-/* === SLIDE === */
+/* Mobile aspect ratio override */
+@media (max-width: 600px) {
+  .slides-container {
+    aspect-ratio: 36 / 43;
+    min-height: 240px;
+    max-width: 98vw;
+  }
+}
+
+/* NoBroker Logo Overlay */
+.slide-logo {
+  position: absolute;
+  top: 24px;
+  left: 30px;
+  width: 74px;
+  height: 74px;
+  z-index: 20;
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .slide-logo {
+    top: 12px;
+    left: 10px;
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* Slide Styles */
 .slide {
   position: absolute;
   width: 100%;
@@ -61,46 +76,19 @@ body {
   justify-content: center;
   text-align: center;
   background: transparent;
-  padding: 2.5em 1.5em 1em 1.5em;
+  padding: 3.5em 1.5em 1em 1.5em;
   color: var(--color-text);
-  z-index: 0;
+  z-index: 10;
 }
 
-.slide.active {
-  display: flex;
-  animation: fadeIn 1s;
-}
+.slide.active { display: flex; animation: fadeIn 0.75s; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(18px);}
   to { opacity: 1; transform: none;}
 }
 
-/* === LOGO ON SLIDE === */
-.slide::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 22px;
-  left: 32px;
-  width: 74px;
-  height: 74px;
-  background: url('NBL-Logo-no-bg.jpg') no-repeat center center / contain;
-  opacity: 1;
-  z-index: 2;
-  pointer-events: none;
-}
-
-@media (max-width: 450px) {
-  .slide::before {
-    top: 16px;
-    left: 16px;
-    width: 54px;
-    height: 54px;
-  }
-}
-
-/* === TYPOGRAPHY === */
+/* Typography */
 .slide h1 {
   font-family: var(--font-heading);
   font-weight: var(--font-black);
@@ -109,7 +97,6 @@ body {
   color: var(--color-text);
   text-shadow: 0 2px 6px var(--color-shadow);
 }
-
 .slide h2 {
   font-family: var(--font-heading);
   font-weight: var(--font-extrabold);
@@ -118,84 +105,32 @@ body {
   color: var(--color-text);
   text-shadow: 0 2px 6px var(--color-shadow);
 }
-
-.slide p, .slide, .slide .body {
+.slide p, .slide, .slide .body, .slide .slide-content {
   font-family: var(--font-heading);
   font-weight: var(--font-semibold);
-  font-size: 1.15em;
+  font-size: 1.38em;
   line-height: 1.7;
   color: var(--color-text);
   text-shadow: 0 1.5px 4px var(--color-shadow);
 }
 
-/* Slide Main Text (if not tags) */
-.slide .slide-content {
-  font-size: 1.4em;
-  font-family: var(--font-heading);
-  font-weight: var(--font-semibold);
-  line-height: 1.6;
-  color: var(--color-text);
-  text-shadow: 0 1.5px 5px var(--color-shadow);
-}
-
-/* Highlight (like interest rate) */
+/* Highlight */
 .slide .highlight {
   color: var(--color-icon);
-  background: rgba(216,0,0, 0.15);
-  padding: 0.08em 0.4em;
+  background: rgba(216,0,0, 0.17);
+  padding: 0.08em 0.45em;
   border-radius: 5px;
   font-weight: var(--font-black);
   text-shadow: 0 2px 6px var(--color-shadow);
 }
 
-/* === VIDEO CONTROLS WRAPPER === */
-.video-controls {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-  margin: 1.6em 0 0.7em 0;
-}
-
-/* === SLIDE-SWITCHER BUTTONS === */
-.video-controls button {
-  background: transparent;
-  color: var(--color-icon);
-  border: none;
-  font-size: 2.3em;
-  transition: color 0.18s, background 0.18s, filter 0.18s;
-  border-radius: 999px;
-  cursor: pointer;
-  outline: none;
-  box-shadow: 0 2px 10px rgba(84,84,84,0.13);
-  padding: 0.28em 0.37em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.video-controls button:active,
-.video-controls button:focus {
-  background: rgba(216,0,0,0.23);
-  color: #fff;
-  outline: 2px solid var(--color-icon);
-}
-
-.video-controls button:hover {
-  color: #fff;
-  background: var(--color-icon);
-  filter: drop-shadow(0 2px 10px var(--color-shadow));
-}
-
-/* === SLIDE INDICATORS === */
+/* Slide Indicators */
 #slideIndicators {
   display: flex;
   justify-content: center;
   gap: 0.44em;
   margin: 1.1em 0;
 }
-
 .slide-indicator {
   --dot-size: 14px;
   width: var(--dot-size);
@@ -214,7 +149,7 @@ body {
   box-shadow: 0 0 9px var(--color-icon);
 }
 
-/* === PROGRESS BAR === */
+/* Progress Bar */
 .progress-bar {
   position: relative;
   width: 88%;
@@ -234,32 +169,67 @@ body {
   transition: width 0.28s linear;
 }
 
-/* === TIME DISPLAY === */
+/* Time Display */
 #timeDisplay {
   display: flex;
   justify-content: center;
   gap: 0.68em;
   margin-top: 6px;
-  font-size: 1.05em;
+  font-size: 1.12em;
   color: var(--color-text);
   text-shadow: 0 1px 3px var(--color-shadow);
   letter-spacing: 1px;
 }
 
-/* === CTA BUTTON === */
+/* Controls */
+.video-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  margin: 1.27em 0 0.8em 0;
+}
+.video-controls button {
+  background: transparent;
+  color: var(--color-icon);
+  border: none;
+  font-size: 2.25em;
+  border-radius: 999px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(84,84,84,0.08);
+  padding: 0.28em 0.37em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.18s, background 0.18s;
+}
+.video-controls button:active,
+.video-controls button:focus {
+  background: rgba(216,0,0,0.21);
+  color: #fff;
+  outline: 2px solid var(--color-icon);
+}
+.video-controls button:hover {
+  color: #fff;
+  background: var(--color-icon);
+}
+
+/* CTA Button */
 .cta-button {
   display: inline-block;
-  margin-top: 1.8em;
+  margin-top: 2em;
   background: var(--color-icon);
   color: #fff;
   font-family: var(--font-heading);
   font-weight: var(--font-black);
-  font-size: 1.2em;
+  font-size: 1.17em;
   border: none;
   border-radius: 37px;
   padding: 0.75em 2.6em;
   cursor: pointer;
-  box-shadow: 0 4px 18px 0 rgba(84,84,84,0.17);
+  box-shadow: 0 4px 18px 0 rgba(84,84,84,0.18);
   transition: background 0.17s, color 0.15s, transform 0.1s;
   text-shadow: 0 2px 6px var(--color-shadow);
   letter-spacing: 1.5px;
@@ -271,30 +241,17 @@ body {
   transform: scale(1.06);
 }
 
-/* === AUDIO CONTROL (Always Hidden) === */
-#audioPlayer, #backgroundMusic {
-  display: none !important;
-}
+#audioPlayer, #backgroundMusic { display: none !important; }
 
-/* === RESPONSIVE ADJUSTMENTS === */
-@media (max-width: 690px) {
-  .slides-container {
-    max-width: 98vw;
-    height: 62vw;
-    min-height: 230px;
-  }
-  .slide h1 { font-size: 1.43em; }
-  .slide h2 { font-size: 1.02em; }
+@media (max-width: 960px) {
+  .slides-container { max-width: 99vw; }
+  .slide h1 { font-size: 1.48em; }
+  .slide h2 { font-size: 1.04em; }
   .slide p, .slide .slide-content { font-size: 1em; }
 }
-
-@media (max-width: 430px) {
-  .slides-container {
-    min-height: 130px;
-    height: 260px;
-  }
-  .slide h1, .slide h2 { font-size: 1.06em; }
+@media (max-width: 420px) {
+  .slides-container { min-height: 120px; height: 210px; }
+  .slide-logo { width: 35px; height: 40px; top: 4px; left: 4px; }
 }
 
-/* === UTILITY === */
-.hidden { display: none !important; }
+.icon-btn { color: var(--color-icon); }
