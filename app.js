@@ -22,7 +22,6 @@ class VideoPlayer {
     this.pausedAtTime = 0;
     this.totalDuration = this.slides.reduce((acc, s) => acc + s.duration, 0);
 
-    // DOM
     this.allSlides = Array.from(document.querySelectorAll('.slide'));
     this.slideIndicators = document.getElementById('slideIndicators');
     this.progressFill = document.querySelector('.progress-fill');
@@ -85,7 +84,6 @@ class VideoPlayer {
       }
       else if (e.code === 'KeyR') this.restart();
     });
-    // Attempt auto-play on user gesture (required in some browsers):
     document.body.addEventListener('click', () => {
       if (this.isPlaying && this.audio && this.audio.paused) this.audio.play();
     }, {once:true});
