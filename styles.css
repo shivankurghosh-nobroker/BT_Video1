@@ -28,7 +28,6 @@ body, html {
   border-radius: 18px;
   box-shadow: 0 8px 32px 0 rgba(84,84,84,0.12);
   overflow: hidden;
-  /* Default desktop aspect: 16:9 */
   width: 95vw; max-width: 900px;
   aspect-ratio: 16 / 9;
   min-height: 340px;
@@ -65,7 +64,7 @@ body, html {
   }
 }
 
-/* Slide Styles */
+/* Slides */
 .slide {
   position: absolute;
   width: 100%;
@@ -80,9 +79,7 @@ body, html {
   color: var(--color-text);
   z-index: 10;
 }
-
 .slide.active { display: flex; animation: fadeIn 0.75s; }
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(18px);}
   to { opacity: 1; transform: none;}
@@ -114,7 +111,6 @@ body, html {
   text-shadow: 0 1.5px 4px var(--color-shadow);
 }
 
-/* Highlight */
 .slide .highlight {
   color: var(--color-icon);
   background: rgba(216,0,0, 0.17);
@@ -215,6 +211,7 @@ body, html {
   color: #fff;
   background: var(--color-icon);
 }
+.icon-btn { color: var(--color-icon); }
 
 /* CTA Button */
 .cta-button {
@@ -253,5 +250,3 @@ body, html {
   .slides-container { min-height: 120px; height: 210px; }
   .slide-logo { width: 35px; height: 40px; top: 4px; left: 4px; }
 }
-
-.icon-btn { color: var(--color-icon); }
