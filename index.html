@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <title>NoBroker Balance Transfer Video Presentation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Font Import -->
+  <!-- Fonts for Montserrat Black/Extra-Bold/Semi-Bold -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900;800;600&display=swap" rel="stylesheet">
-  <!-- Your CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Background music -->
-  <audio id="backgroundMusic" src="https://music.youtube.com/watch?v=TNs5JFYaTMk&list=PLfP6i5T0-DkLVwacbQFT8nHfzvBRzZIeF" loop preload="auto"></audio>
+  <!-- Background music: set the URL to your chosen mp3 source -->
+  <audio id="backgroundMusic" src="https://www.example.com/your-music.mp3" loop preload="auto"></audio>
 
-  <!-- Slides Container -->
   <div class="slides-container">
+    <img src="https://your.cdn.com/nobroker-logo.svg" alt="NoBroker Logo" class="slide-logo" />
     <div class="slide"><div class="slide-content">Are you still paying a high EMI every month?</div></div>
     <div class="slide"><div class="slide-content">What if you could bring that down—without changing your home, your job, or your routine?</div></div>
     <div class="slide"><div class="slide-content">With NoBroker's Balance Transfer, you can shift your existing home loan to a new lender offering lower interest rates</div></div>
@@ -31,27 +30,18 @@
     </div>
   </div>
 
-  <!-- Slide Indicators -->
   <div id="slideIndicators"></div>
-
-  <!-- Progress Bar -->
   <div class="progress-bar"><div class="progress-fill"></div></div>
-
-  <!-- Time Display (current/total) -->
   <div id="timeDisplay">
     <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
   </div>
-
-  <!-- Video Controls -->
   <div class="video-controls">
-    <button id="rewindBtn" aria-label="Previous/rewind slide" title="Previous"><span style="color:#D80000">⏮️</span></button>
-    <button id="playBtn" aria-label="Play" title="Play"><span style="color:#D80000">▶️</span></button>
-    <button id="pauseBtn" aria-label="Pause" title="Pause"><span style="color:#D80000">⏸️</span></button>
-    <button id="stopBtn" aria-label="Stop" title="Stop"><span style="color:#D80000">⏹️</span></button>
-    <button id="forwardBtn" aria-label="Next/forward slide" title="Next"><span style="color:#D80000">⏭️</span></button>
+    <button id="rewindBtn" aria-label="Previous slide" title="Previous"><span class="icon-btn">⏮️</span></button>
+    <button id="playBtn" aria-label="Play" title="Play"><span class="icon-btn">▶️</span></button>
+    <button id="pauseBtn" aria-label="Pause" title="Pause"><span class="icon-btn">⏸️</span></button>
+    <button id="stopBtn" aria-label="Stop" title="Stop"><span class="icon-btn">⏹️</span></button>
+    <button id="forwardBtn" aria-label="Next slide" title="Next"><span class="icon-btn">⏭️</span></button>
   </div>
-  
-  <!-- App JS -->
   <script src="app.js"></script>
 </body>
 </html>
